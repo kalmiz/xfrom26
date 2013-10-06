@@ -125,11 +125,13 @@ try {
 			$row['isDouble'] = 0;
 			$row['pos'] = trim(array_shift(explode(",", str_replace( "?", "", $row['pos']))));
 			$row['pos'] = trim(array_shift(explode("/", str_replace( "?", "", $row['pos']))));
-			$exists = $mapper->findUnique(new Xfrom26_Model_Word(), $row['word'], $row['pos'], $row['profile']);
-			if (!$exists->getId() && (strpos($row['word'], '(') === false) && sizeof(explode(" ", $row['word'])) < 3) {
-				$mapper->save(new Xfrom26_Model_Word($row));
-				$imported += 1;
-			}
+            if ((strpos($row['word'], '(') === false) && (strpos($row['word'], '…') === false) && sizeof(explode(" ", $row['word'])) < 2) {
+                $exists = $mapper->findUnique(new Xfrom26_Model_Word(), $row['word'], $row['pos'], $row['profile']);
+                if (!$exists->getId()) {
+                    $mapper->save(new Xfrom26_Model_Word($row));
+                    $imported += 1;
+                }
+            }
 		}
         if ('testing' != APPLICATION_ENV) {
             echo "Data Loaded. Imported $imported from " . count($data) . " lines.";
