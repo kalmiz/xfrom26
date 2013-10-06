@@ -1,0 +1,17 @@
+<div id="view-game">
+	<p>The word is <?php echo $this->word->getLength() ?> characters length. Profile: <strong><?php echo $this->profile ?></strong></p>
+	<p>
+		<ol id="list">
+		</ol>
+	</p>
+	<p>
+	Type a word: <input type="text" id="word" name="word" value="" autocomplete="off"  maxlength="<?php echo $this->word->getLength() ?>"/>
+	<input type="submit" id="submit" />
+	</p>
+	<p>
+	<a href="/game/new">New game</a>
+	</p>
+	<p>
+		<a href="#" id="showme">Show me the word</a> <span id="current-word" class="hidden"><?php echo $this->word->getWord() ?></span>
+	</p>
+</div>
