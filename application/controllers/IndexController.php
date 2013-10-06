@@ -13,6 +13,14 @@ class IndexController extends Zend_Controller_Action
         // action body
     }
 
+    public function wordsAction()
+    {
+        $wordMapper = new Xfrom26_Model_WordMapper();
+		$this->view->words = $wordMapper->fetchAll();
+    }
+
 
 }
+
+
 

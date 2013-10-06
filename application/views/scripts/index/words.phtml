@@ -1,0 +1,20 @@
+<div id="view-content">
+	<table border="1">
+		<tr>
+			<th>Word</th>
+			<th>POS</th>
+			<th>Profile</th>
+			<th>Definition</th>
+			<th>Example</th>
+		</tr>
+		<?php foreach ($this->words as $word): ?>
+		<tr>
+			<td><?php echo $word->getWord() ?></td>
+			<td><?php echo $word->getPos() ?></td>
+			<td><?php echo $word->getProfile() ?></td>
+			<td><?php echo $word->getDefinition() ?></td>
+			<td><?php echo $word->getExample() ?></td>
+		</tr>
+		<?php endforeach ?>
+	</table>
+</div>
