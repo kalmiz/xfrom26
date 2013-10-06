@@ -17,7 +17,7 @@ function Xfrom26_Init_Game(window, $) {
 		submitHandler = function (ev) {
 			var value = $word.val();
 			if (value.length !== len) {
-				window.alert("Please, choose a word with " + len + " characters length");
+				window.alert("Please, choose a word which contains " + len + " letters");
 			} else {
 				$.getJSON("/game/check?word=" + window.escape(value), succesHandler);
 			}
