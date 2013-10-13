@@ -28,20 +28,47 @@ class GameController extends Zend_Controller_Action
 			->setRedirect("/game");
     }
 
+	/**
+	 * Check the word
+	 *
+	 * @param string $word
+	 */
+	private function validateWord($word)
+	{
+		if (!$this->wordMapper->exists($word))
+		{
+			if (strpos($word, '"') === false && strpos($word, '..') === false && strpos($word, '/') === false)
+			{
+				$output = array();
+				$cmd = 'echo "'.$word.'" | aspell --lang=en_US -a';
+				$output = shell_exec($cmd);
+				var_dump($output);
+				if (count($output) > 1)
+				{
+					return trim($output[1]) === "*";
+				}
+				else return false;
+			} 
+			else return false;
+		}
+		return true;
+	}
+
 	// AJAX
     public function checkAction()
     {
 		$this->session->counter += 1;
 		$bet = trim($this->getRequest()->word);
 		$word = $this->session->word->getWord();
+		$valid = $this->validateWord($bet);
 		$ret = array(
 			"word" => $bet,
 			"left" => 0,
 			"right" => 0, 
-			"status" => 0,
+			"status" => $valid ? 0 : 2,
 			"counter" => $this->session->counter);
 
-		if ($word) {
+		if ($word && $valid) {
 			if ($bet == $word) {
 				$ret['status'] = 1;
 			} else {
