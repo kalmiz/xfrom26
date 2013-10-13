@@ -9,6 +9,8 @@ function Xfrom26_Init_Game(window, $) {
 			var html = "";
 			if (data.status === 1) {
 				html = "<strong>Match!</strong>";
+			} else if (data.status === 2) {
+				html = "<strong>Wrong word!</strong>";
 			} else {
 				html = data.left + " <span>" + data.word + "</span> " + data.right;
 			}

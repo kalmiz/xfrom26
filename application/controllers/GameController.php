@@ -40,9 +40,10 @@ class GameController extends Zend_Controller_Action
 			if (strpos($word, '"') === false && strpos($word, '..') === false && strpos($word, '/') === false)
 			{
 				$output = array();
+				$path = getenv("PATH");
+				putenv("PATH=$path:/usr/local/bin");
 				$cmd = 'echo "'.$word.'" | aspell --lang=en_US -a';
-				$output = shell_exec($cmd);
-				var_dump($output);
+				$rc = exec($cmd, $output);
 				if (count($output) > 1)
 				{
 					return trim($output[1]) === "*";
