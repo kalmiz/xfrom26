@@ -1,7 +1,2 @@
-body {
-	font-family: Verdana, Arial, sans-serif;
-}
 
 #list span { display: inline-block; width: 80px; }
-
-.hidden { display: none; }
