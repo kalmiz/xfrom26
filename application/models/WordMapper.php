@@ -105,6 +105,24 @@ class Xfrom26_Model_WordMapper
 
 	}
 
+	/**
+	 * Lookup for a word by string
+	 *
+	 * @param $word string The word
+	 * @return Xfrom26_Model_Word
+	 */
+	public function exists($value)
+	{
+		$result = $this->getDbTable()->fetchAll(
+			$this->getDbTable()
+				->select()
+				->where("word = ?", $value));
+        if (0 == count($result)) {
+            return false;
+        }
+		return true;
+	}
+
     public function fetchAll()
     {
         $resultSet = $this->getDbTable()->fetchAll();
