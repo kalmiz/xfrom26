@@ -20,8 +20,8 @@ class GameController extends Zend_Controller_Action
 
     public function newAction()
     {
-        $this->session->profile = "A1";
-        $this->session->word = $this->wordMapper->fetchRandomWord(new Xfrom26_Model_Word(), $this->session->profile);
+        $this->session->word = $this->wordMapper->fetchRandomWord(new Xfrom26_Model_Word(), array("A1", "A2"));
+        $this->session->profile = $this->session->word->getProfile();
         $this->session->counter = 0;
         $this
             ->getResponse()

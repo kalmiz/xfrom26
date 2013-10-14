@@ -81,17 +81,18 @@ class Xfrom26_Model_WordMapper
 		return $this->load($word, $result->current());
 	}
 
-	public function fetchRandomWord(Xfrom26_Model_Word $word, $profile, $maxLength = 6, array $pos = array()) {
+	public function fetchRandomWord(Xfrom26_Model_Word $word, array $profile = array('A1'), $maxLength = 6, array $pos = array()) {
 		$sql = $this->getDbTable()
 			->select()
 			->from(array('w' => 'wordlist'))
 			->columns('id')
-			->where('profile = ?', $profile)
+			->where("profile IN ('" . join("','", $profile) . "')")
 			->where('len > 2 and len <= ?', $maxLength);
 		if (!empty($pos)) {
-			$sql = $sql->where("pos IN (" . join("',''", $pos). "')");
+			$sql = $sql->where("pos IN ('" . join("',''", $pos). "')");
 		}
 		//echo $sql;
+		//die;
 		$resultSet = $this->getDbTable()->fetchAll($sql);
 		$idList = array();
 		foreach ($resultSet as $row) {
