@@ -59,7 +59,7 @@ class GameController extends Zend_Controller_Action
     public function checkAction()
     {
         $this->session->counter += 1;
-        $bet = trim($this->getRequest()->word);
+        $bet = strtolower(trim($this->getRequest()->word));
         $word = $this->session->word->getWord();
         $valid = $this->validateWord($bet);
         $ret = array(
