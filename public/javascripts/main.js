@@ -1,7 +1,7 @@
 function Xfrom26_Init_Game(window, $) {
 	'use strict';
 
-	var $submit = $("#submit"),
+	var $form = $("#wordForm"),
 		$list = $("#list"),
 		$word = $("#word"),
 		len = parseInt($("#word").attr("maxlength"), 10),
@@ -18,20 +18,21 @@ function Xfrom26_Init_Game(window, $) {
 		},
 		submitHandler = function (ev) {
 			var value = $word.val();
+			ev.preventDefault();
 			if (value.length !== len) {
 				window.alert("Please, choose a word which contains " + len + " letters");
 			} else {
+				$word.val("");
 				$.getJSON("/game/check?word=" + window.escape(value), succesHandler);
 			}
 			return false;
 		};
 
-	$submit.on("click", submitHandler);
+	$form.on("submit", submitHandler);
 	$("#showme").on("click", function () {
 		$("#current-word").removeClass("hidden");
 		return false;
 	});
-	console.log("Done.");
 }
 
 // main entry point

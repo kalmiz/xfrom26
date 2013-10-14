@@ -4,10 +4,12 @@
 		<ol id="list">
 		</ol>
 	</p>
-	<p>
-	Type a word: <input type="text" id="word" name="word" value="" autocomplete="off"  maxlength="<?php echo $this->word->getLength() ?>"/>
-	<input type="submit" id="submit" />
-	</p>
+	<form action="#" id="wordForm">
+		<p>
+		Type a word: <input type="text" id="word" name="word" value="" autocomplete="off"  maxlength="<?php echo $this->word->getLength() ?>"/>
+		<input type="submit" id="submit" />
+		</p>
+	</form>
 	<p>
 	<a href="/game/new">New game</a>
 	</p>
