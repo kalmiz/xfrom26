@@ -1,0 +1,10 @@
+{
+	"name": "xfrom26",
+	"require": {
+		"zendframework/zendframework1": "1.12.*"
+	},
+	"authors": [{
+		"name": "Zoltan Kalmar",
+		"email": "kalmiz@gmail.com"
+	}]
+}
